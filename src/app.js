@@ -40,8 +40,8 @@ app.delete("/api/products/:pid", async(req,res)=>{
 //? Manejo de Carritos (/api/carts/)
 app.get("/api/carts/:cid", async(req,res)=>{
     const idCarrito = req.params.cid
-    const carritoId = await cartManager.getCartById(parseInt(idCarrito));
-    res.status(200).json({ carritoId, message: "Carrito encontrado y mostrado con exito" });
+    const carritoId = await cartManager.getProductsInCartById(parseInt(idCarrito));
+    res.status(200).json({ productosDelCarrito: carritoId, message: `Carrito con id = ${idCarrito}  encontrado y se muestran sus productos con exito` });
 })
 app.post("/api/carts/", async (req,res)=>{
     const cartNew= await cartManager.addCart(req.body)
