@@ -1,11 +1,20 @@
 [
   {
-    "id": 7,
-    "title": "Maceta Jazz",
+    "id": 2,
+    "title": "Florero susan",
     "price": "5000",
-    "description": "Maceta jazz en color blanco",
-    "code": "AH8844",
-    "stock": "3",
+    "description": "florero blanco de ceramica",
+    "code": "aghy",
+    "stock": "2",
+    "category": "florero"
+  },
+  {
+    "id": 3,
+    "title": "Maceta Matix",
+    "price": "5000",
+    "description": "Maceta Matix de ceramica color celeste",
+    "code": "aalloo1",
+    "stock": "25",
     "category": "maceta"
   }
 ]

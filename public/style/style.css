@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #fefae0;
+    color: #282b23;
+    font-family: "Montserrat", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 0;
+}
+
+header {
+    background-color: #606c38;
+    color: #283618;
+    padding: 20px;
+}
+
+header h1,
+.nav-link {
+    color: #fefae0;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    font-weight: 600;
+    color: #fefae0;
+}
+
+/* -----------home----------- */
+.home {
+    padding: 50px;
+
+}
+
+.home h2 {
+    color: #bc6c25;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contenedor-productos {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.home .contenedor-productos .producto {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+
+}
+
+.home .contenedor-productos .producto>p {
+    font-weight: 700;
+}
+
+/* ----------------realtime ---------------- */
+.realtime-products {
+    padding: 50px;
+    border-top: #bc6c25 3px dotted;
+
+}
+
+.realtime-products h2 {
+    color: #bc6c25;
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.realtime-products .contenedor-productos .producto button {
+    border: 0;
+    background-color: #606c38;
+    color: #fefae0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.realtime-products .contenedor-productos .producto h3{
+    text-transform: uppercase;
+}
+
+.add-product {
+    padding: 50px;
+
+}
+
+.add-product h2 {
+    color: #bc6c25;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+#form-add-product .contenedor-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+    font-family: "Montserrat", sans-serif;
+}
+
+#form-add-product div {
+    padding: 0 20px;
+}
+
+#form-add-product div .campo-form {
+    width: 100%;
+    border: #582f0e 2px solid;
+    color: #582f0e;
+    background-color: #f3efd4;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+#form-add-product div .campo-form::placeholder{
+    color: #582f0e;
+}
+    .boton {
+        color: #fefae0;
+        background-color: #582f0e;
+        border: 0;
+        margin-top: 10px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        width: 50%;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+    #form-add-product{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #form-add-product div label{
+        color: #582f0e;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }

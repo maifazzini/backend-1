@@ -11,15 +11,15 @@ socket.on("deletedproduct", (data)=>{
     if(data.length == 0){
         contenedorProductos.innerHTML = "<p> No hay productos para mostrar</p>"
     }else{
-
-        contenedorProductos.innerHTML= data.map(element => {
-        return`<div class="producto">
-            <h3>${element.title}</h3>
-            <p>${element.description}</p>
-            <p>$ ${element.price}</p>
-            <button onclick="eliminarproducto(${element.id})">Eliminar ${element.title}</button>
-        </div>`
-    }).join(``);
+        const newproducts=data.map(element => {
+            return`<div class="producto">
+                <h3>${element.title}</h3>
+                <p>${element.description}</p>
+                <p>$ ${element.price}</p>
+                <button onclick="eliminarproducto(${element.id})">Eliminar ${element.title}</button>
+            </div>`
+        }).join("");
+        contenedorProductos.innerHTML= newproducts
 }
 })
 formulario.addEventListener("submit", (e) => {
