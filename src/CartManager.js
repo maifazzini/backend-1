@@ -3,7 +3,7 @@ import fs from "fs";
 class CartManager {
     
     constructor() {
-        this.path ="./src/cart.json" 
+        this.path ="./src/data/cart.json" 
     }
     generateNewId = (carts) => {
         if (carts.length > 0) {

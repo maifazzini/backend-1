@@ -3,7 +3,7 @@ import fs from "fs";
 class ProductManager {
     
     constructor() {
-        this.path = './src/products.json'; 
+        this.path = './src/data/products.json'; 
     }
     generateNewId = (products) => {
         if (products.length > 0) {
@@ -13,7 +13,7 @@ class ProductManager {
         }
     }
     //? para agregar un producto
-    addProduct = async (nuevousuario) => {
+    addProduct = async (nuevoproducto) => {
         try {
             //lee el archivo
             const productsJson = await fs.promises.readFile(this.path, "UTF-8");
@@ -22,10 +22,11 @@ class ProductManager {
             //genera id
             const nuevoid = this.generateNewId(products);
             //genera un nuevo array con lo que esta añadiendo
-            const productsnew = [...products, { id: nuevoid, ...nuevousuario }];
+            const newproduct= { id: nuevoid, ...nuevoproducto }
+            const productsnew = [...products, newproduct ];
             // lo agrega al archivo
             await fs.promises.writeFile(this.path, JSON.stringify(productsnew, null, 2), "utf-8")
-            return productsnew
+            return newproduct
         }
         catch (e) {
             console.log(e);
