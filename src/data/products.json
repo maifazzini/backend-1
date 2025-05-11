@@ -1,20 +1,112 @@
 [
   {
-    "id": 2,
-    "title": "Florero susan",
-    "price": "5000",
-    "description": "florero blanco de ceramica",
-    "code": "aghy",
-    "stock": "2",
-    "category": "florero"
+      "title": "Maceta Lima",
+      "description": "Maceta minimalista de cemento gris",
+      "code": "xXZ8K4",
+      "price": 23498,
+      "status": true,
+      "stock": 5,
+      "category": "maceta",
+      "thumbnails": "/img/maceta-lima.jpg"
   },
   {
-    "id": 3,
-    "title": "Maceta Matix",
-    "price": "5000",
-    "description": "Maceta Matix de ceramica color celeste",
-    "code": "aalloo1",
-    "stock": "25",
-    "category": "maceta"
+      "title": "Florero Quito",
+      "description": "Florero geométrico de porcelana blanca",
+      "code": "RRaPUi",
+      "price": 8570,
+      "status": false,
+      "stock": 5,
+      "category": "florero",
+      "thumbnails": "/img/florero-quito.jpg"
+  },
+  {
+      "title": "Florero Praga",
+      "description": "Florero de vidrio soplado artesanal",
+      "code": "5XHs1w",
+      "price": 18778,
+      "status": false,
+      "stock": 5,
+      "category": "florero",
+      "thumbnails": "/img/florero-praga.jpg"
+  },
+  {
+      "title": "Maceta Osaka",
+      "description": "Maceta decorativa con acabado metálico",
+      "code": "C0OjMI",
+      "price": 12970,
+      "status": false,
+      "stock": 12,
+      "category": "maceta",
+      "thumbnails": "/img/maceta-osaka.jpg"
+  },
+  {
+      "title": "Florero Berlín",
+      "description": "Florero de metal dorado estilo vintage",
+      "code": "rwIHiC",
+      "price": 25475,
+      "status": true,
+      "stock": 14,
+      "category": "florero",
+      "thumbnails": "/img/florero-berlín.jpg"
+  },
+  {
+      "title": "Maceta Copenhague",
+      "description": "Maceta decorativa con acabado metálico",
+      "code": "ylzK2h",
+      "price": 17870,
+      "status": false,
+      "stock": 4,
+      "category": "maceta",
+      "thumbnails": "/img/maceta-copenhague.jpg"
+  },
+  {
+      "title": "Florero Ámsterdam",
+      "description": "Florero de vidrio soplado artesanal",
+      "code": "AkUjAy",
+      "price": 27280,
+      "status": false,
+      "stock": 13,
+      "category": "florero",
+      "thumbnails": "/img/florero-ámsterdam.jpg"
+  },
+  {
+      "title": "Florero Berlín",
+      "description": "Florero de cerámica pintado a mano",
+      "code": "xWbq0c",
+      "price": 5954,
+      "status": true,
+      "stock": 9,
+      "category": "florero",
+      "thumbnails": "/img/florero-berlín.jpg"
+  },
+  {
+      "title": "Florero Berlín",
+      "description": "Florero de metal dorado estilo vintage",
+      "code": "j6PZqx",
+      "price": 9818,
+      "status": true,
+      "stock": 5,
+      "category": "florero",
+      "thumbnails": "/img/florero-berlín.jpg"
+  },
+  {
+      "title": "Maceta Roma",
+      "description": "Maceta minimalista de cemento gris",
+      "code": "Y4Za97",
+      "price": 27181,
+      "status": true,
+      "stock": 17,
+      "category": "maceta",
+      "thumbnails": "/img/maceta-roma.jpg"
+  },
+  {
+      "title": "Florero Quito",
+      "description": "Florero de metal dorado estilo vintage",
+      "code": "d9B4P3",
+      "price": 28173,
+      "status": true,
+      "stock": 14,
+      "category": "florero",
+      "thumbnails": "/img/florero-quito.jpg"
   }
 ]

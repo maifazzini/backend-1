@@ -1,26 +1,24 @@
 import express from "express"
-import CartManager from "../CartManager.js";
+import {addProductInCartById, createCart, getCartById, deleteProductInCartById,deleteAllProductsInCart,updateAllProductsInCart, updateQuantityOfProductInCartById } from "../controllers/carts.controllers.js"
 
-const cartRouter= express.Router();
+const cartRouter = express.Router();
+/* o	PUT api/carts/:cid/products/:pid deberá poder actualizar SÓLO la cantidad de ejemplares del producto por cualquier cantidad pasada desde req.body */
 
-//creo las instancias para poder usar los metodos
-const cartManager = new CartManager();
+//? Manejo de Carritos (/api/carts/) 
+//*nuevos
+//deberá eliminar del carrito el producto seleccionado.
+cartRouter.delete("/:cid/products/:pid", deleteProductInCartById)
 
-//? Manejo de Carritos (/api/carts/)
-cartRouter.get("/:cid", async(req,res)=>{
-    const idCarrito = req.params.cid;
-    const carritoId = await cartManager.getProductsInCartById(parseInt(idCarrito));
-    res.status(200).json({ productosDelCarrito: carritoId, message: `Carrito con id = ${idCarrito}  encontrado y se muestran sus productos con exito` });
-})
-cartRouter.post("/", async (req,res)=>{
-    const cartNew= await cartManager.addCart(req.body)
-    res.status(201).json({ cartNew, message: "Carrito creado con exito" });
-})
-cartRouter.post("/:cid/product/:pid", async (req,res)=>{
-    const idCarrito = parseInt(req.params.cid)
-    const idProducto = parseInt(req.params.pid)
-    const quantity=  req.body.quantity
-    const cartaddproduct= await cartManager.addProductInCart(idCarrito,idProducto, quantity)
-    res.status(200).json({ cartaddproduct, message: "Producto añadido con exito al carrito" });
-})
+//deberá eliminar todos los productos del carrito 
+cartRouter.delete("/:cid", deleteAllProductsInCart)
+//deberá actualizar todos los productos del carrito con un arreglo de productos.
+cartRouter.put("/:cid", updateAllProductsInCart)
+
+//deberá poder actualizar SÓLO la cantidad de ejemplares del producto por cualquier cantidad pasada desde req.body en un objeto
+cartRouter.put("/:cid/products/:pid", updateQuantityOfProductInCartById)
+
+//* anteriores
+cartRouter.get("/:cid", getCartById)
+cartRouter.post("/", createCart)
+cartRouter.post("/:cid/product/:pid", addProductInCartById)
 export default cartRouter

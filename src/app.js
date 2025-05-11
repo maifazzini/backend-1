@@ -5,13 +5,14 @@ import viewsRouter from "./routes/views.router.js"
 import { Server } from "socket.io";
 import http from "http"
 import { engine } from "express-handlebars";
-import ProductManager from "./ProductManager.js";
+import connectMongoDB from "./config/mobgodb.js";
+import Productsdb from "./models/products.model.js";
 
 //?creo servidor
 const app= express();
 const server = http.createServer(app)
 const io = new Server(server);
-const PORT=8080
+const PORT=8080;
 
 //?config
 //hacer carpeta estatica
@@ -21,6 +22,9 @@ app.use(express.json())
 //para que reciba informacion
 app.use(express.urlencoded({extended:true}))
 
+//? base de datos
+connectMongoDB()
+
 //?handlebar
 app.engine("handlebars", engine())
 app.set("view engine", "handlebars")
@@ -28,19 +32,18 @@ app.set("views", "./src/views")
 
 //?websocket
 
-//creo las instancias para poder usar los metodos
-const productManager = new ProductManager();
 
 io.on("connection", (socket)=>{
     
     socket.on("addNewProduct", async (data)=>{
-        const newproduct= await productManager.addProduct(data)
+        const newproduct= new Productsdb(data);
+        await newproduct.save()
         socket.emit("newproduct", newproduct)
     })
     socket.on("deleteproduct", async (data)=>{
         const id= parseInt(data.id);
-        const newlistproduct= await productManager.deleteProductById(id)
-
+        await Productsdb.findByIdAndDelete(id);
+        const newlistproduct= Productsdb.find()
         socket.emit("deletedproduct",newlistproduct)
     })
     console.log("cliente conectado")
