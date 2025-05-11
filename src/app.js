@@ -7,12 +7,15 @@ import http from "http"
 import { engine } from "express-handlebars";
 import connectMongoDB from "./config/mobgodb.js";
 import Productsdb from "./models/products.model.js";
+import dotenv from "dotenv";
+//var entorno
+dotenv.config();
 
 //?creo servidor
 const app= express();
 const server = http.createServer(app)
 const io = new Server(server);
-const PORT=8080;
+const PORT= process.env.PORT;
 
 //?config
 //hacer carpeta estatica
@@ -41,7 +44,7 @@ io.on("connection", (socket)=>{
         socket.emit("newproduct", newproduct)
     })
     socket.on("deleteproduct", async (data)=>{
-        const id= parseInt(data.id);
+        const id= data.id;
         await Productsdb.findByIdAndDelete(id);
         const newlistproduct= Productsdb.find()
         socket.emit("deletedproduct",newlistproduct)

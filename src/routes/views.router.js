@@ -1,12 +1,13 @@
 import express from "express"
-import ProductManager from "../ProductManager.js";
+
+import Productsdb from "../models/products.model.js";
 
 const viewsRouter = express.Router();
-const productManager = new ProductManager();
+
 
 viewsRouter.get("/", async (req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const products = await Productsdb.find();
         res.render("home", { products });
     }
     catch (error) {
@@ -15,7 +16,7 @@ viewsRouter.get("/", async (req, res) => {
 })
 viewsRouter.get("/realtimeproducts", async(req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const products = await  Productsdb.find();
         res.render("realTimeProducts", {products});
     }
     catch (error) {
