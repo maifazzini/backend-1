@@ -14,8 +14,8 @@ viewsRouter.get("/products", async (req, res) => {
     try {
         const products = await Productsdb.paginate(filter, { limit: limit, page: page, sort: sortfilter, lean: true })
 
-        const prevLink= products.hasPrevPage ? `?category=${category}&sort=${sort}&page=${products.prevPage}&limit=${limit}` : null
-        const nextLink= products.hasNextPage ? `?category=${category}&sort=${sort}&page=${products.nextPage}&limit=${limit}` : null
+        const prevLink= products.hasPrevPage ? `${category?"?category="+category+"&":"?"}sort=${sort}&page=${products.prevPage}&limit=${limit}` : null
+        const nextLink= products.hasNextPage ? `${category?"?category="+category+"&": "?"}sort=${sort}&page=${products.nextPage}&limit=${limit}` : null
         const productsnew= {...products, prevLink, nextLink} ;
         res.render("index", { productsnew });
     } catch (error) {
