@@ -1,0 +1,21 @@
+<section class="cart">
+    <div>
+        <h2>Productos del carrito </h2>
+        <p>N° {{cartid._id}}</p>
+    </div>
+    <div class="contenedor-productos" >
+        {{#each cartid.products}}
+        <div class="producto">
+            
+            <div>
+                <h3>{{this.product.title}}</h3>
+                <p>{{this.product.description}}</p>
+            </div>
+            <p>${{this.product.price}}</p>
+
+            <p>Cantidad agregada: {{this.quantity}}</p>
+            
+        </div>
+        {{/each}}
+    </div>
+</section>

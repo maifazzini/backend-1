@@ -5,7 +5,7 @@ const getCartById= async (req, res) => {
         const idCarrito = req.params.cid;
         const productosDelCarrito = await Cartsdb.findById(idCarrito, { products: 1, _id: 0 }).populate("products.product")
         if (!productosDelCarrito) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         res.status(200).json({ status: "success", payload: productosDelCarrito })
     } catch (error) {
@@ -31,7 +31,7 @@ const addProductInCartById=async (req, res) => {
         //encontrar carrito
         const carrito = await Cartsdb.findById(idCarrito)
         if (!carrito) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return  res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         const productoExistente = carrito.products.find((product) =>
             //paso a string el objet id y lo comparo
@@ -58,7 +58,7 @@ const deleteProductInCartById= async (req, res) => {
         const { cid, pid } = req.params;
         const carritoId = await Cartsdb.findById(cid)
         if (!carritoId) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return  res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         const productosNuevos = carritoId.products.filter((product) =>
             //paso a string el objet id y lo comparo
@@ -77,7 +77,7 @@ const deleteAllProductsInCart= async (req, res) => {
         const { cid } = req.params;
         const carritoId = await Cartsdb.findById(cid)
         if (!carritoId) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         carritoId.products = [];
         await carritoId.save()
@@ -93,7 +93,7 @@ const updateAllProductsInCart = async (req, res) => {
         const data = req.body;
         const carritoUpdate = await Cartsdb.findByIdAndUpdate(cid, { products: data }, { new: true, runValidators: true })
         if (!carritoUpdate) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         res.status(200).json({ status: "success", payload: carritoUpdate, message: "Se modificaron todos los productos del carrito con exito" })
     } catch (error) {
@@ -109,7 +109,7 @@ const updateQuantityOfProductInCartById= async (req, res) => {
         //encontrar carrito
         const carrito = await Cartsdb.findById(idCarrito)
         if (!carrito) {
-            res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
+            return  res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
         const productoExistente = carrito.products.find((product) =>
             //paso a string el objet id y lo comparo

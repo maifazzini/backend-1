@@ -46,7 +46,7 @@ io.on("connection", (socket)=>{
     socket.on("deleteproduct", async (data)=>{
         const id= data.id;
         await Productsdb.findByIdAndDelete(id);
-        const newlistproduct= Productsdb.find()
+        const newlistproduct= await Productsdb.find()
         socket.emit("deletedproduct",newlistproduct)
     })
     console.log("cliente conectado")

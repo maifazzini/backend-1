@@ -1,0 +1,34 @@
+<section class="home">
+    <h2>Productos</h2>
+    <div class="ver-carrito" id="vercarrito"></div>
+    <div class="contenedor-productos">
+        {{#each productsnew.docs }}
+        <div class="producto">
+            <img src="{{this.thumbnails}}" alt="{{this.title}}">
+            <div>
+                <h3>{{this.title}}</h3>
+                <p>{{this.description}}</p>
+            </div>
+            <p>${{this.price}}</p>
+            <button onclick="agregarProductoCarrito('{{this._id}}')">Agregar al carrito</button>
+        </div>
+        {{/each}}
+    </div>
+    <div class="paginado">
+        <div>
+            {{#if productsnew.hasPrevPage}}
+            <a href="{{productsnew.prevLink}}">Anterior</a>
+            {{/if}}
+        </div>
+        <div>
+            <p>{{productsnew.page}}</p>
+        </div>
+        <div>
+            {{#if productsnew.hasNextPage}}
+            <a href="{{productsnew.nextLink}}"> Siguiente</a>
+            {{/if}}
+        </div>
+    </div> 
+</section>
+<script src="./js/index.js"></script>
+

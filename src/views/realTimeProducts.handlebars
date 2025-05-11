@@ -29,16 +29,16 @@
     <section class="realtime-products">
         <h2>Productos en vivo</h2>
         <div class="contenedor-productos" id="contenedor-productos">
-            {{#each products}}
+            {{#each array}}
             <div class="producto">
                 <h3>{{this.title}}</h3>
                 <p>{{this.description}}</p>
                 <p>$ {{this.price}}</p>
-                <button onclick="eliminarproducto({{this.id}})">Eliminar {{this.title}}</button>
+                <button onclick="eliminarproducto('{{this._id}}')">Eliminar {{this.title}}</button>
             </div>
             {{/each}}
         </div>
     </section>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/realtime.js"></script>

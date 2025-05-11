@@ -3,6 +3,7 @@
     <div class="contenedor-productos">
         {{#each products}}
         <div class="producto">
+                <img src="{{this.thumbnails}}" alt="{{this.title}}">
             <div>
                 <h3>{{this.title}}</h3>
                 <p>{{this.description}}</p>

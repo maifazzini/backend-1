@@ -1,45 +1,47 @@
-const socket = io();
+//crear variable de carrito
+let cartId;
 
-const formulario = document.querySelector("#form-add-product");
-const contenedorProductos = document.querySelector("#contenedor-productos");
-
-const eliminarproducto= (id)=>{
-    socket.emit("deleteproduct", {id})
-    
+// Crear carrito si no existe uno en localStorage
+const createCartIfNeeded= async() =>{
+    cartId = localStorage.getItem("cartId");
+    if (!cartId) {
+        try {
+            const res = await fetch("/api/carts", {
+                method: "POST",
+            });
+            const data = await res.json();
+            if (data.status === "success") {
+                cartId = data.payload._id;
+                localStorage.setItem("cartId", cartId);
+            }
+        } catch (err) {
+            console.log("Error al crear carrito:", err);
+        }
+        return cartId
+    }
 }
-socket.on("deletedproduct", (data)=>{
-    if(data.length == 0){
-        contenedorProductos.innerHTML = "<p> No hay productos para mostrar</p>"
-    }else{
-        const newproducts=data.map(element => {
-            return`<div class="producto">
-                <h3>${element.title}</h3>
-                <p>${element.description}</p>
-                <p>$ ${element.price}</p>
-                <button onclick="eliminarproducto(${element.id})">Eliminar ${element.title}</button>
-            </div>`
-        }).join("");
-        contenedorProductos.innerHTML= newproducts
+
+// Función para agregar un producto
+const agregarProductoCarrito= async (id) => {
+    await createCartIfNeeded();
+
+    try {
+        const res = await fetch(`/api/carts/${cartId}/product/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ quantity: 1 }),
+                })
+    } catch (err) {
+        console.log("Error:", err);
+    }
 }
-})
-formulario.addEventListener("submit", (e) => {
-    e.preventDefault()
-    const title = document.querySelector("#title").value;
-    const price = document.querySelector("#price").value;
-    const category = document.querySelector("#category").value;
-    const stock = document.querySelector("#stock").value;
-    const description = document.querySelector("#description").value;
-    const code = document.querySelector("#code").value;
-    socket.emit("addNewProduct", { title, price, description, code, stock, category })
-    formulario.reset()
-})
+//para que se ejecute cuando carga la pagina
+createCartIfNeeded();
 
-socket.on ("newproduct", (data)=>{
-    contenedorProductos.innerHTML += `<div class="producto">
-                <h3>${data.title}</h3>
-                <p>${data.description}</p>
-                <p>$${data.price}</p>
-                <button onclick="eliminarproducto(${data.id})">Eliminar ${data.title}</button>
-            </div>`
-})
+let verCarrito = document.getElementById("vercarrito")
 
+if(cartId){
+    verCarrito.innerHTML= `<a href="/carts/${cartId}"> ver carrito</a>`;
+}
