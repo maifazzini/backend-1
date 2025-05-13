@@ -5,9 +5,9 @@ const getProductandPaginate = async (req, res) => {
     const filter = category ? { category: { $eq: category } } : {};
     const sortfilter = sort ? { price: sort === "desc" ? -1 : 1 } : {};
     try {
-        const products = await Productsdb.paginate(filter, { limit: limit, page: page, sort: sortfilter })
-        const prevLink = products.hasPrevPage ? `?page=${products.prevPage}&limit=${limit}` : null
-        const nextLink = products.hasNextPage ? `?page=${products.nextPage}&limit=${limit}` : null
+        const products = await Productsdb.paginate(filter, { limit: limit, page: page, sort: sortfilter})
+        const prevLink= products.hasPrevPage ? `${category?"?category="+category+"&":"?"}sort=${sort}&page=${products.prevPage}&limit=${limit}` : null
+        const nextLink= products.hasNextPage ? `${category?"?category="+category+"&": "?"}sort=${sort}&page=${products.nextPage}&limit=${limit}` : null
         res.status(200).json({
             status: "success", payload: products, prevLink, nextLink
         });

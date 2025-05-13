@@ -60,6 +60,12 @@ const deleteProductInCartById= async (req, res) => {
         if (!carritoId) {
             return  res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
+        const productoIncludes = carritoId.products.find((product) =>
+            //paso a string el objet id y lo comparo
+            product.product.toString() === pid)
+        if (!productoIncludes){
+            return  res.status(404).json({ status: "error", message: "No se encontro un producto con ese id" })
+        }
         const productosNuevos = carritoId.products.filter((product) =>
             //paso a string el objet id y lo comparo
             product.product.toString() !== pid)
@@ -111,9 +117,16 @@ const updateQuantityOfProductInCartById= async (req, res) => {
         if (!carrito) {
             return  res.status(404).json({ status: "error", message: "No se encontro un carrito con ese id" })
         }
+        const productoIncludes = carrito.products.find((product) =>
+            //paso a string el objet id y lo comparo
+            product.product.toString() === pid)
+        if (!productoIncludes){
+            return  res.status(404).json({ status: "error", message: "No se encontro un producto con ese id" })
+        }
         const productoExistente = carrito.products.find((product) =>
             //paso a string el objet id y lo comparo
             product.product.toString() === pid)
+        
         if (productoExistente) {
             // cambiar la camtidad
             productoExistente.quantity = quantity;
